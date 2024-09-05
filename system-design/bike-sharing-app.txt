@@ -1,0 +1,170 @@
+Design a bike sharing system. Consider a 10,000 foot view - the major components, the internal and external APIs, the data storage, and how it all works together.
+
+A city bike sharing system consists of bike stations distributed around a city. Each station has a kiosk and a number of attached bike docks. Each dock can hold only one bike at a time. Members may rent a bike from any station and must return it to an open bike dock when finished. Design the kiosk and backend for this bike sharing system, implementing these constraints:
+Only members can check out a bike.
+Members should only be allowed to check out one bike at a time.
+Members are billed based on time, not distance.
+Bike stations may be located anywhere in the city.
+For simplicity, assume the kiosk can identify the serial numbers of bikes docked to it.
+
+
+Docks Table
+Bike Table
+Geo location
+User
+Payment [user credit card]
+
+
+SQL database
+Dock table
+  id
+  locationId
+  isInUse
+  lockStatus
+
+Dock Bike Table
+  id
+  DockId
+  BikeId
+
+Bike table
+  id
+  identifier/barcode
+
+Bike User Table
+  id
+  userId
+  BikeId
+  CheckOutDatetime
+  CheckInDatetime
+  paymentMethodId
+
+User table
+  id
+  email address
+  password
+  emailverified
+  paymentMethodId
+  isActive
+  isBanned
+
+Credential table
+  id
+  userId
+  password
+
+Identity
+  id
+  userId
+  user name
+  email
+  image
+
+Access Token
+  id
+  token
+
+Payment Method table
+  type
+  card number
+  tokenId
+
+kiosk
+  id
+  name
+  locationId
+
+Location
+  id
+  geo coordinates
+  Street
+  City
+  State
+  Country
+  Postal
+
+Post /user/auth
+Request:{
+  email
+  password
+}
+Response:{
+  accessToken
+  refreshToken
+  userId
+}
+
+Post /user/oauth
+Request:{
+  accessToken
+  tokenId
+}
+Response: {
+  200
+}
+
+Get /user/profile
+Request: {
+  userId
+}
+Respopnse:{
+  full name
+  payment methods
+  profile image
+}
+
+Get /user/history
+Request: {
+  userId
+}
+Respopnse:{
+  geolocation
+  time
+  cost
+}
+
+Get /dock/with-bike
+Request: {
+  locationId
+}
+Response:" {
+  [
+    {bikeId, dockId}
+  ]
+}
+
+Post /bike/checkout
+Request: {
+  userId
+  dockId
+  paymentMethodType
+  Card Number
+  Name
+  Expiry Date
+  Security Card
+}
+Response: {
+  200
+}
+
+Patch /dock/checked-out
+Request:{
+  dockId
+  bikeIdentifier
+  userId
+  createDatetime
+}
+Response: {
+  200
+}
+
+Patch /dock/checked-in
+Request:{
+  bikeIdentifier
+  createDatetime
+}
+response: {
+  usageTime
+  name
+  charges
+}
