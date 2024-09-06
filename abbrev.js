@@ -2,6 +2,7 @@
 // l10n -- "localization"
 // r6n -- "rajkaran"
 
+// O(n)
 function abbrev1(s) {
   if (s.length < 4) {
     return s;
@@ -14,13 +15,13 @@ function abbrev1(s) {
   return `${first.join("")}${sArr.length}${last.join("")}`;
 }
 
+// O(1)
 function abbrev(s) {
   if (s.length < 4) {
     return s;
   }
 
-  const sArr = s.split("");
-  return sArr[0] + (sArr.length - 2) + sArr[sArr.length - 1];
+  return s[0] + (s.length - 2) + s[s.length - 1];
 }
 
 console.log(abbrev("rajkaran"));
