@@ -6,9 +6,13 @@ class HashTable {
 
   hash(key) {
     let total = 0;
+
+    // Get the sum of Unicode (UTF-16) code for each charater in given string key
     for (let i = 0; i < key.length; i++) {
       total += key.charCodeAt(i);
     }
+    
+    // Get the remainder of the sum divided by the size of the table
     return total % this.size;
   }
 
@@ -63,9 +67,9 @@ const table = new HashTable(10);
 table.set("name", "Bruce");
 table.set("age", 25);
 table.display();
-console.log(table.get("name"));
-table.set("mane", "Clark");
-table.set("name", "Diana");
-console.log(table.get("mane"));
-table.remove("name");
-table.display();
+// console.log(table.get("name"));
+// table.set("mane", "Clark");
+// table.set("name", "Diana");
+// console.log(table.get("mane"));
+// table.remove("name");
+// table.display();
