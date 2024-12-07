@@ -101,6 +101,10 @@ class BinarySearchTree {
     return root;
   }
 
+
+  // go to the left first node first. read the left node value and than come 
+  // back to root node read its value and then go to right node to read its value.
+  // This is Depth First Search traversal
   inOrder(root) {
     if (root) {
       this.inOrder(root.left);
@@ -109,6 +113,9 @@ class BinarySearchTree {
     }
   }
 
+  // read the root node value first and then traverse to the left node 
+  // and read its value and then traverse to the right node and read its value.
+  // This is Depth First Search traversal
   preOrder(root) {
     if (root) {
       console.log('preOrder', root.value);
@@ -117,6 +124,9 @@ class BinarySearchTree {
     }
   }
 
+  // read the left node value first and then read the 
+  // root node value and then read the right node value.
+  // This is Depth First Search traversal
   postOrder(root) {
     if (root) {
       this.postOrder(root.left);
@@ -125,6 +135,10 @@ class BinarySearchTree {
     }
   }
 
+  // read the node on each level. We would start at the root node. add root node to queue
+  // then dequeue the root node and read its value.
+  // After this add left child to queue and the right child to queue, as queue isn't empty while loop would continue.
+  // This is Breadth First Search traversal
   levelOrder() {
     /** Use the optimised queue enqueue and dequeue from queue-object.js instead.
      * I've used an array for simplicity. */

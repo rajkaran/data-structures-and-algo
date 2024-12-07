@@ -19,6 +19,7 @@ class LinkedList {
     return this.size;
   }
 
+  // O(1)
   prepend(value) {
     const node = new Node(value);
     if (this.isEmpty()) {
@@ -30,6 +31,7 @@ class LinkedList {
     this.size++;
   }
 
+  // O(n)
   append(value) {
     const node = new Node(value);
     if (this.isEmpty()) {
